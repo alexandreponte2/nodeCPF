@@ -1,0 +1,27 @@
+
+pipeline {
+    agent any
+    stages {
+        stage ('Clean Workspace'){
+            steps{
+                deleteDir()
+            }
+        }
+        stage('Clone') {
+            agent {
+                docker {
+                    image 'node:14.16'
+                    args '-u 0:0'
+                }
+            }
+            steps {
+                // Get some code from a GitHub repository
+                git url: 'https://gitlab.com/alexandreponte2/turma-devops-nodejs.git', branch: 'main'
+                sh 'npm install && \
+                    npm test'
+                echo 'clone..'
+            }
+        }
+    }
+}
+
