@@ -25,13 +25,13 @@ jobs:
          node-version: "16.x"
 
       - name: Install dependencies
-        run: npm install
+        run:  npm install
 
       - name: Npm Version
-        run: npm --version
+        run:  npm --version
 
       - name: Run test
-        run: npm test
+        run:  npm test
 
-      #- name: Run coverage test
-      #  run: npm run test:coverage
+      - name: Run coverage test
+        run:  run test-comportamento
