@@ -1,0 +1,37 @@
+name: NodeCPF
+
+on:
+  push:
+    branches: [main]
+   # paths-ignore:
+   #   - '**.md'
+  pull_request:
+    branches: [main]
+   # paths-ignore:
+   # - '**.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # container:
+    #   image: docker://node:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.0.0
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+         node-version: "16.x"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Npm Version
+        run: npm --version
+
+      - name: Run test
+        run: npm test
+
+      #- name: Run coverage test
+      #  run: npm run test:coverage
